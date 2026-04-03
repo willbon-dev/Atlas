@@ -2,6 +2,7 @@
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { seoDefaults, siteConfig, siteUrl } from "../config/site";
+import { THEME_STORAGE_KEY } from "../utils/theme";
 import "../styles/global.css";
 import "katex/dist/katex.min.css";
 
@@ -33,6 +34,38 @@ const ogImage = image ? new URL(image, siteUrl).toString() : undefined;
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" type="application/rss+xml" title={`${siteConfig.siteName} RSS`} href={`${siteConfig.basePath}/rss.xml`} />
+    <script is:inline define:vars={{ themeStorageKey: THEME_STORAGE_KEY }}>
+      (() => {
+        const options = new Set(["system", "light", "dark"]);
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+        const getStoredTheme = () => {
+          const stored = localStorage.getItem(themeStorageKey);
+          return options.has(stored) ? stored : "system";
+        };
+
+        const getResolvedTheme = (theme) => {
+          if (theme === "light" || theme === "dark") return theme;
+          return media.matches ? "dark" : "light";
+        };
+
+        const applyTheme = () => {
+          const preference = getStoredTheme();
+          const resolved = getResolvedTheme(preference);
+          document.documentElement.dataset.theme = resolved;
+          document.documentElement.dataset.themePreference = preference;
+          document.documentElement.style.colorScheme = resolved;
+          window.dispatchEvent(new CustomEvent("theme-controls-sync"));
+        };
+
+        applyTheme();
+        const handleMediaChange = () => {
+          if (getStoredTheme() === "system") applyTheme();
+        };
+        media.addEventListener("change", handleMediaChange);
+        window.addEventListener("theme-change", applyTheme);
+      })();
+    </script>
   </head>
   <body>
     <div class="page-shell">
@@ -44,4 +77,3 @@ const ogImage = image ? new URL(image, siteUrl).toString() : undefined;
     </div>
   </body>
 </html>
-

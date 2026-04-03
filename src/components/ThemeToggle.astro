@@ -1,0 +1,56 @@
+---
+const options = [
+  { value: "system", label: "跟随系统" },
+  { value: "light", label: "浅色" },
+  { value: "dark", label: "深色" }
+];
+---
+
+<div class="theme-toggle" data-theme-toggle>
+  <span class="theme-toggle-label">主题</span>
+  <div class="theme-toggle-options" role="group" aria-label="主题切换">
+    {
+      options.map((option) => (
+        <button
+          type="button"
+          class="theme-toggle-button"
+          data-theme-option={option.value}
+          aria-pressed={option.value === "system" ? "true" : "false"}
+        >
+          {option.label}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  const storageKey = "willbon-atlas-theme";
+  const themeButtons = Array.from(document.querySelectorAll("[data-theme-option]"));
+
+  const getStoredTheme = () => {
+    const stored = localStorage.getItem(storageKey);
+    return stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+  };
+
+  const syncThemeControls = () => {
+    const theme = getStoredTheme();
+    themeButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.themeOption === theme));
+    });
+  };
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const theme = button.dataset.themeOption;
+      if (!theme) return;
+      localStorage.setItem(storageKey, theme);
+      window.dispatchEvent(new CustomEvent("theme-change"));
+      syncThemeControls();
+    });
+  });
+
+  syncThemeControls();
+  window.addEventListener("storage", syncThemeControls);
+  window.addEventListener("theme-controls-sync", syncThemeControls);
+</script>
