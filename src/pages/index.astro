@@ -1,0 +1,55 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import NavCard from "../components/NavCard.astro";
+import PostCard from "../components/PostCard.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import { siteConfig } from "../config/site";
+import { getFeaturedLinks } from "../lib/navigation";
+import { getPostSlug, getPublishedPosts } from "../lib/posts";
+
+const posts = await getPublishedPosts();
+const featuredLinks = await getFeaturedLinks();
+const latest = posts[0];
+const basePath = siteConfig.basePath;
+---
+
+<BaseLayout>
+  <Hero latestTitle={latest?.data.title} latestHref={latest ? `${basePath}/blog/${getPostSlug(latest.id)}/` : undefined} />
+
+  <section class="shell section-stack">
+    <SectionTitle
+      eyebrow="Recent Writing"
+      title="Latest blog posts"
+      description="持续记录技术实践、项目设计与内容工作流。"
+      href={`${basePath}/blog`}
+      hrefLabel="View all posts"
+    />
+    <div class="post-grid-list">
+      {posts.slice(0, 3).map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          href={`${basePath}/blog/${getPostSlug(post.id)}/`}
+          date={post.data.date}
+          tags={post.data.tags}
+          cover={post.data.cover}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="shell section-stack">
+    <SectionTitle
+      eyebrow="Curated Resources"
+      title="Featured navigation"
+      description="把我真正常用、愿意反复推荐的资源整理成轻量导航。"
+      href={`${basePath}/nav`}
+      hrefLabel="Open navigation"
+    />
+    <div class="nav-grid">
+      {featuredLinks.map((item) => <NavCard item={item} />)}
+    </div>
+  </section>
+</BaseLayout>
+

@@ -1,0 +1,25 @@
+---
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+type Props = {
+  headings: Heading[];
+};
+
+const { headings } = Astro.props;
+const filtered = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+
+{
+  filtered.length > 0 && (
+    <aside class="toc">
+      <p class="toc-title">On this page</p>
+      <ul>
+        {filtered.map((heading) => <li class={`depth-${heading.depth}`}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+      </ul>
+    </aside>
+  )
+}

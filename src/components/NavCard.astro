@@ -1,0 +1,36 @@
+---
+import TagList from "./TagList.astro";
+import { resolveAssetPath } from "../lib/assets";
+import type { NavItem } from "../lib/navigation";
+
+type Props = {
+  item: NavItem;
+};
+
+const { item } = Astro.props;
+const iconSrc = resolveAssetPath(item.icon);
+---
+
+<article class="nav-card">
+  <div class="nav-card-top">
+    <div class="nav-card-title">
+      {
+        iconSrc && (
+          <span class="nav-card-icon">
+            <img src={iconSrc} alt="" loading="lazy" decoding="async" />
+          </span>
+        )
+      }
+      <div>
+        <h3>
+          <a href={item.url} target="_blank" rel="noreferrer">
+            {item.title}
+          </a>
+        </h3>
+        {item.featured && <span class="pill">Featured</span>}
+      </div>
+    </div>
+  </div>
+  <p>{item.description}</p>
+  <TagList tags={item.tags ?? []} />
+</article>

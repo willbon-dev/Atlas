@@ -1,0 +1,39 @@
+---
+import { siteConfig } from "../config/site";
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Blog", href: "/blog" },
+  { label: "Navigation", href: "/nav" },
+  { label: "About", href: "/about" }
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const basePath = siteConfig.basePath === "/" ? "" : siteConfig.basePath;
+---
+
+<header class="site-header">
+  <div class="shell site-header-inner">
+    <a class="brand" href={`${basePath}/`}>
+      <span class="brand-mark">WA</span>
+      <span class="brand-copy">
+        <strong>{siteConfig.siteName}</strong>
+        <small>Blog and Navigation Atlas</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      {
+        navItems.map((item) => {
+          const href = `${basePath}${item.href === "/" ? "/" : item.href}`;
+          const normalized = href.replace(/\/$/, "") || "/";
+          const active = currentPath === normalized;
+          return (
+            <a class:list={["site-nav-link", { active }]} href={href}>
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>

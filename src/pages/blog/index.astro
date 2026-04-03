@@ -1,0 +1,65 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import { siteConfig } from "../../config/site";
+import { collectTags, getPostSlug, getPublishedPosts } from "../../lib/posts";
+
+const posts = await getPublishedPosts();
+const tags = collectTags(posts);
+const basePath = siteConfig.basePath;
+---
+
+<BaseLayout title="Blog" description="Willbon Atlas 的博客文章列表。">
+  <section class="shell listing-page">
+    <SectionTitle
+      eyebrow="Blog"
+      title="Editorial notes and build logs"
+      description="支持 Markdown、公式、Mermaid 图表与思维导图的长期写作空间。"
+    />
+
+    <div class="filter-bar" data-filter-root>
+      <button class="filter-chip active" type="button" data-tag="all">All</button>
+      {tags.map((tag) => <button class="filter-chip" type="button" data-tag={tag}>{tag}</button>)}
+    </div>
+
+    <div class="post-grid-list" data-post-list>
+      {posts.map((post) => (
+        <div data-post data-tags={post.data.tags.join(",")}>
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`${basePath}/blog/${getPostSlug(post.id)}/`}
+            date={post.data.date}
+            tags={post.data.tags}
+            cover={post.data.cover}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const root = document.querySelector("[data-filter-root]");
+    const posts = Array.from(document.querySelectorAll("[data-post]"));
+
+    root?.addEventListener("click", (event) => {
+      const button = event.target instanceof HTMLElement ? event.target.closest("[data-tag]") : null;
+      if (!(button instanceof HTMLButtonElement)) return;
+
+      const tag = button.dataset.tag;
+      if (!tag) return;
+
+      for (const chip of root.querySelectorAll("[data-tag]")) {
+        chip.classList.toggle("active", chip === button);
+      }
+
+      for (const post of posts) {
+        const tags = (post.getAttribute("data-tags") ?? "").split(",").filter(Boolean);
+        const visible = tag === "all" || tags.includes(tag);
+        post.toggleAttribute("hidden", !visible);
+      }
+    });
+  </script>
+</BaseLayout>
+

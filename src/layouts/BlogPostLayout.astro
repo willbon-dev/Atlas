@@ -1,0 +1,95 @@
+﻿---
+import BaseLayout from "./BaseLayout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import TagList from "../components/TagList.astro";
+import { resolveAssetPath } from "../lib/assets";
+import type { CollectionEntry } from "astro:content";
+import { siteConfig } from "../config/site";
+import { getPostSlug } from "../lib/posts";
+
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+type Props = {
+  entry: CollectionEntry<"blog">;
+  headings: Heading[];
+  prevPost?: CollectionEntry<"blog">;
+  nextPost?: CollectionEntry<"blog">;
+};
+
+const { entry, headings, prevPost, nextPost } = Astro.props;
+const coverSrc = resolveAssetPath(entry.data.cover);
+const postBase = `${siteConfig.basePath}/blog`;
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} image={coverSrc}>
+  <article class="post-layout shell">
+    <header class="post-hero">
+      <div class="post-hero-copy">
+        <p class="meta">
+          <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString("zh-CN")}
+          </time>
+        </p>
+        <h1>{entry.data.title}</h1>
+        <p class="post-description">{entry.data.description}</p>
+        <TagList tags={entry.data.tags} />
+      </div>
+      {coverSrc && (
+        <div class="post-hero-cover">
+          <img src={coverSrc} alt={`${entry.data.title} cover`} loading="eager" decoding="async" />
+        </div>
+      )}
+    </header>
+
+    <div class="post-grid">
+      <div class="post-article expressive-content">
+        <slot />
+      </div>
+      <TableOfContents headings={headings} />
+    </div>
+
+    <nav class="post-pagination" aria-label="Post navigation">
+      {nextPost ? <a href={`${postBase}/${getPostSlug(nextPost.id)}/`}>← {nextPost.data.title}</a> : <span />}
+      {prevPost ? <a href={`${postBase}/${getPostSlug(prevPost.id)}/`}>{prevPost.data.title} →</a> : <span />}
+    </nav>
+  </article>
+
+  <script>
+    const blocks = Array.from(document.querySelectorAll(".expressive-content pre code.language-mermaid"));
+
+    async function renderMermaid() {
+      if (blocks.length === 0) {
+        return;
+      }
+
+      const { default: mermaid } = await import("mermaid");
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "neutral",
+        securityLevel: "loose"
+      });
+
+      const nodes = [];
+      for (const code of blocks) {
+        const pre = code.parentElement;
+        if (!pre || !pre.parentElement) continue;
+        const wrapper = document.createElement("div");
+        wrapper.className = "mermaid";
+        wrapper.textContent = code.textContent ?? "";
+        pre.replaceWith(wrapper);
+        nodes.push(wrapper);
+      }
+
+      if (nodes.length > 0) {
+        await mermaid.run({ nodes });
+      }
+    }
+
+    renderMermaid();
+  </script>
+</BaseLayout>
+

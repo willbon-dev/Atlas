@@ -1,0 +1,45 @@
+---
+import { siteConfig } from "../config/site";
+
+type Props = {
+  latestTitle?: string;
+  latestHref?: string;
+};
+
+const { latestTitle, latestHref } = Astro.props;
+---
+
+<section class="hero shell">
+  <div class="hero-copy">
+    <p class="eyebrow">Willbon's Editorial Playground</p>
+    <h1>{siteConfig.siteName}</h1>
+    <p class="hero-summary">{siteConfig.siteDescription}</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href={`${siteConfig.basePath}/blog`}>
+        Explore Blog
+      </a>
+      <a class="button button-secondary" href={`${siteConfig.basePath}/nav`}>
+        Browse Navigation
+      </a>
+    </div>
+    {
+      latestTitle && latestHref && (
+        <p class="hero-latest">
+          Latest note:
+          <a href={latestHref}>{latestTitle}</a>
+        </p>
+      )
+    }
+  </div>
+  <div class="hero-panel">
+    <div class="hero-panel-card">
+      <p>Content Stack</p>
+      <ul>
+        <li>Markdown / MDX blogging</li>
+        <li>KaTeX math rendering</li>
+        <li>Mermaid diagrams and mindmaps</li>
+        <li>Structured YAML navigation</li>
+      </ul>
+    </div>
+  </div>
+</section>

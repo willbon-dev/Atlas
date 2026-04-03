@@ -1,0 +1,112 @@
+categories:
+  - title: 资源搜索
+    description: 围绕资料检索、网盘搜索和电子书访问整理的入口。
+    links:
+      - title: PanHunt 导航
+        url: https://panhunt.com/
+        description: 聚合网盘搜索入口，适合先从导航页快速定位资源。
+        tags:
+          - search
+          - netdisk
+        featured: true
+        icon: https://panhunt.com/favicon.ico
+      - title: PanHunt 搜索
+        url: https://panhunt.com/
+        description: 基于 PanSou 的搜索入口，适合直接按关键词检索资源。
+        tags:
+          - search
+          - pansou
+        featured: false
+        icon: https://panhunt.com/favicon.ico
+      - title: PanSou 项目
+        url: https://github.com/fish2018/pansou
+        description: 网盘搜索项目源码，适合查看实现思路或自行部署。
+        tags:
+          - github
+          - search
+        featured: false
+        icon: https://github.githubassets.com/favicons/favicon.svg
+      - title: Z-Library 访问指南
+        url: https://www.reddit.com/r/zlibrary/wiki/index_zh/access_zh/
+        description: Z-Library 中文访问说明，适合先确认当前可用入口。
+        tags:
+          - books
+          - guide
+        featured: false
+        icon: https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png
+      - title: Z-Access
+        url: https://go-to-library.sk/
+        description: Z-Library 访问入口页，适合快速跳转到可用镜像。
+        tags:
+          - books
+          - access
+        featured: true
+        icon: https://go-to-library.sk/favicon.ico
+  - title: AI 与大模型
+    description: 关注模型原理、AI 编程与工具实践。
+    links:
+      - title: Happy-LLM
+        url: https://datawhalechina.github.io/happy-llm/#/
+        description: 从零开始构建大模型的中文教程，适合系统打基础。
+        tags:
+          - llm
+          - tutorial
+        featured: true
+        icon: https://datawhalechina.github.io/happy-llm/favicon.ico
+      - title: Everything Claude Code
+        url: https://github.com/affaan-m/everything-claude-code
+        description: Claude Code 相关资料与经验汇总，适合查找工作流参考。
+        tags:
+          - ai-coding
+          - github
+        featured: false
+        icon: https://github.githubassets.com/favicons/favicon.svg
+  - title: 前端与设计
+    description: 偏前端实战、工具上手和界面设计的学习资料。
+    links:
+      - title: Electron + Vue3 + TS 实战
+        url: https://www.bilibili.com/video/BV1FHzYBRErx/
+        description: 从基础到项目实战的 Electron 教程，适合快速建立桌面应用认知。
+        tags:
+          - electron
+          - vue
+          - typescript
+        featured: true
+        icon: https://www.bilibili.com/favicon.ico
+      - title: Figma 新手教程 2025
+        url: https://www.bilibili.com/video/BV1QzADeFEcF/
+        description: 面向新手的 Figma 基础操作与 UI 设计流程教程。
+        tags:
+          - figma
+          - ui
+          - beginner
+        featured: false
+        icon: https://www.bilibili.com/favicon.ico
+      - title: Figma 零基础入门 2026
+        url: https://www.bilibili.com/video/BV1LDUWBjEPD
+        description: 更完整的零基础 Figma 教程，适合做长期系统学习。
+        tags:
+          - figma
+          - design
+          - course
+        featured: false
+        icon: https://www.bilibili.com/favicon.ico
+      - title: Fontshare
+        url: https://www.fontshare.com/
+        description: 免费商用字体资源，适合尝试更有气质的排版。
+        tags:
+          - typography
+          - branding
+        featured: false
+        icon: assets/nav/fontshare-mark.svg
+  - title: 写作与文档
+    description: 适合整理写作规范、版本记录和内容维护习惯的参考。
+    links:
+      - title: Keep a Changelog
+        url: https://keepachangelog.com/zh-CN/1.1.0/
+        description: 更新日志写法的经典规范，适合项目维护与发布说明。
+        tags:
+          - documentation
+          - changelog
+        featured: true
+        icon: https://keepachangelog.com/apple-touch-icon.png

@@ -1,0 +1,21 @@
+---
+import { siteConfig } from "../config/site";
+---
+
+<footer class="site-footer">
+  <div class="shell site-footer-inner">
+    <div>
+      <p class="footer-title">{siteConfig.siteName}</p>
+      <p class="footer-copy">{siteConfig.siteDescription}</p>
+    </div>
+    <div class="footer-links">
+      {
+        siteConfig.socialLinks.map((link) => (
+          <a href={link.url} target="_blank" rel="noreferrer">
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>
