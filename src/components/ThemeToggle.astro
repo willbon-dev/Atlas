@@ -1,23 +1,24 @@
 ---
 const options = [
-  { value: "system", label: "跟随系统" },
-  { value: "light", label: "浅色" },
-  { value: "dark", label: "深色" }
+  { value: "system", label: "跟随系统", icon: "◐" },
+  { value: "light", label: "浅色", icon: "☀" },
+  { value: "dark", label: "深色", icon: "☾" }
 ];
 ---
 
-<div class="theme-toggle" data-theme-toggle>
-  <span class="theme-toggle-label">主题</span>
-  <div class="theme-toggle-options" role="group" aria-label="主题切换">
+<div class="theme-fab" data-theme-toggle>
+  <div class="theme-fab-options" role="group" aria-label="主题切换">
     {
       options.map((option) => (
         <button
           type="button"
-          class="theme-toggle-button"
+          class="theme-fab-button"
           data-theme-option={option.value}
+          aria-label={option.label}
+          title={option.label}
           aria-pressed={option.value === "system" ? "true" : "false"}
         >
-          {option.label}
+          <span aria-hidden="true">{option.icon}</span>
         </button>
       ))
     }

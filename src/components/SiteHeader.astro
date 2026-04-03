@@ -1,6 +1,5 @@
 ---
 import { siteConfig } from "../config/site";
-import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
   { label: "首页", href: "/" },
@@ -36,6 +35,6 @@ const basePath = siteConfig.basePath === "/" ? "" : siteConfig.basePath;
         })
       }
     </nav>
-    <ThemeToggle />
+    <div class="site-header-spacer" aria-hidden="true"></div>
   </div>
 </header>

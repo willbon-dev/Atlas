@@ -67,10 +67,10 @@ const postBase = `${siteConfig.basePath}/blog`;
       }
 
       const { default: mermaid } = await import("mermaid");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const resolvedTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "neutral";
       mermaid.initialize({
         startOnLoad: false,
-        theme: prefersDark ? "dark" : "neutral",
+        theme: resolvedTheme,
         securityLevel: "loose"
       });
 
