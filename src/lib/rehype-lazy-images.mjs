@@ -1,4 +1,4 @@
-﻿function visit(node, callback) {
+function visit(node, callback) {
   callback(node);
   if (Array.isArray(node.children)) {
     for (const child of node.children) {

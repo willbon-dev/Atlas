@@ -1,4 +1,4 @@
-﻿import rss from "@astrojs/rss";
+import rss from "@astrojs/rss";
 import { getPostSlug, getPublishedPosts } from "../lib/posts";
 import { siteConfig, siteUrl } from "../config/site";
 

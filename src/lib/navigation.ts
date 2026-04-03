@@ -1,4 +1,4 @@
-﻿import path from "node:path";
+import path from "node:path";
 import { readFile } from "node:fs/promises";
 import yaml from "js-yaml";
 

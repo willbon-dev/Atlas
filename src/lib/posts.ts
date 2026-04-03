@@ -1,4 +1,4 @@
-﻿import { getCollection, render } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getPublishedPosts() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);

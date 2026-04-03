@@ -1,4 +1,4 @@
-﻿import { siteConfig } from "../config/site";
+import { siteConfig } from "../config/site";
 
 export function isRemoteAsset(value?: string): boolean {
   return Boolean(value && /^https?:\/\//i.test(value));

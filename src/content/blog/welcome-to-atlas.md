@@ -1,4 +1,4 @@
-﻿---
+---
 title: "欢迎来到 Willbon Atlas"
 description: "这是一篇站点开篇文章，也用来验证封面图、标签和 Markdown 内容能力。"
 date: 2026-04-03
