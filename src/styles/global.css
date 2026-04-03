@@ -82,7 +82,6 @@ main { padding-bottom: 5rem; }
 .site-nav,
 .hero,
 .hero-actions,
-.nav-card-title,
 .nav-card-top,
 .nav-hero,
 .nav-hero-stats {
@@ -308,17 +307,17 @@ main { padding-bottom: 5rem; }
   color: var(--accent-strong);
 }
 
-.nav-card-title { gap: 0.95rem; align-items: center; }
 .nav-card-top {
-  justify-content: space-between;
-  align-items: start;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1.2rem;
 }
 .nav-card-icon {
-  width: 3.25rem;
-  height: 3.25rem;
-  padding: 0.45rem;
-  border-radius: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.6rem;
+  border-radius: 1.15rem;
   display: grid;
   place-items: center;
   background:
@@ -333,6 +332,19 @@ main { padding-bottom: 5rem; }
   object-fit: contain;
   object-position: center;
 }
+.nav-card-copy {
+  min-width: 0;
+}
+.nav-card-copy h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.nav-card-copy p {
+  margin: 1rem 0 0;
+  color: var(--text);
+}
 :root[data-theme="dark"] .nav-card-icon {
   background:
     linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(226, 232, 240, 0.92));
@@ -341,7 +353,6 @@ main { padding-bottom: 5rem; }
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
     0 10px 26px rgba(0, 0, 0, 0.18);
 }
-.pill { display: inline-flex; margin-top: 0.25rem; }
 .category-stack { display: grid; gap: 1.5rem; }
 .category-panel-rich {
   position: relative;
@@ -623,7 +634,8 @@ main { padding-bottom: 5rem; }
   }
 
   .nav-card-top {
-    flex-direction: column;
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    align-items: start;
   }
 
   .theme-fab {

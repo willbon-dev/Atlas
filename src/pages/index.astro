@@ -5,24 +5,25 @@ import NavCard from "../components/NavCard.astro";
 import PostCard from "../components/PostCard.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import { siteConfig } from "../config/site";
-import { getFeaturedLinks } from "../lib/navigation";
+import { getNavigation } from "../lib/navigation";
 import { getPostSlug, getPublishedPosts } from "../lib/posts";
 
 const posts = await getPublishedPosts();
-const featuredLinks = await getFeaturedLinks();
+const categories = await getNavigation();
+const navigationPreview = categories.flatMap((category) => category.links.slice(0, 1)).slice(0, 4);
 const latest = posts[0];
 const basePath = siteConfig.basePath;
 ---
 
 <BaseLayout>
-  <Hero latestTitle={latest?.data.title} latestHref={latest ? `${basePath}/blog/${getPostSlug(latest.id)}/` : undefined} />
+  <Hero latestTitle={latest?.data.title} latestHref={latest ? `${basePath}blog/${getPostSlug(latest.id)}/` : undefined} />
 
   <section class="shell section-stack">
     <SectionTitle
       eyebrow="近期写作"
       title="最新文章"
       description="持续记录技术实践、项目设计与内容工作流。"
-      href={`${basePath}/blog`}
+      href={`${basePath}blog`}
       hrefLabel="查看全部文章"
     />
     <div class="post-grid-list">
@@ -30,7 +31,7 @@ const basePath = siteConfig.basePath;
         <PostCard
           title={post.data.title}
           description={post.data.description}
-          href={`${basePath}/blog/${getPostSlug(post.id)}/`}
+          href={`${basePath}blog/${getPostSlug(post.id)}/`}
           date={post.data.date}
           tags={post.data.tags}
           cover={post.data.cover}
@@ -41,14 +42,14 @@ const basePath = siteConfig.basePath;
 
   <section class="shell section-stack">
     <SectionTitle
-      eyebrow="精选资源"
-      title="导航推荐"
-      description="把我真正常用、愿意反复推荐的资源整理成轻量导航。"
-      href={`${basePath}/nav`}
+      eyebrow="导航分类"
+      title="常用资源入口"
+      description="按分类整理常用站点，保持轻量、清晰、易维护。"
+      href={`${basePath}nav`}
       hrefLabel="进入导航页"
     />
     <div class="nav-grid">
-      {featuredLinks.map((item) => <NavCard item={item} />)}
+      {navigationPreview.map((item) => <NavCard item={item} />)}
     </div>
   </section>
 </BaseLayout>

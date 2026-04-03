@@ -4,21 +4,17 @@ import NavCard from "../components/NavCard.astro";
 import { getNavigation } from "../lib/navigation";
 
 const categories = await getNavigation();
-const featuredCount = categories.reduce(
-  (total, category) => total + category.links.filter((item) => item.featured).length,
-  0
-);
 const totalLinks = categories.reduce((total, category) => total + category.links.length, 0);
 ---
 
-<BaseLayout title="导航" description="Willbon Atlas 的精选导航。">
+<BaseLayout title="导航" description="Willbon Atlas 的分类导航。">
   <section class="shell nav-hero">
     <div class="nav-hero-copy">
       <p class="eyebrow">导航</p>
-      <h1>精选资源图谱</h1>
+      <h1>分类资源图谱</h1>
       <p class="lede">
-        这里收纳我会反复回访的资源入口，覆盖资料搜索、AI 学习、前端设计和文档写作。导航支持远程或本地图标，
-        后续扩展时只需要维护一份结构化配置。
+        这里收纳我会反复回访的资源入口，覆盖资料搜索、AI 学习、前端设计与文档写作。
+        所有导航只按分类维护，图标优先走本地缓存，访问更稳定。
       </p>
     </div>
     <div class="nav-hero-stats">
@@ -29,10 +25,6 @@ const totalLinks = categories.reduce((total, category) => total + category.links
       <article class="nav-stat-card">
         <strong>{categories.length}</strong>
         <span>分类数量</span>
-      </article>
-      <article class="nav-stat-card">
-        <strong>{featuredCount}</strong>
-        <span>精选推荐</span>
       </article>
     </div>
   </section>

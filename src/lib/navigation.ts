@@ -6,8 +6,6 @@ export type NavItem = {
   title: string;
   url: string;
   description: string;
-  tags?: string[];
-  featured?: boolean;
   icon?: string;
 };
 
@@ -28,13 +26,3 @@ export async function getNavigation(): Promise<NavCategory[]> {
   const parsed = yaml.load(source) as NavigationFile;
   return parsed.categories ?? [];
 }
-
-export async function getFeaturedLinks(): Promise<NavItem[]> {
-  const categories = await getNavigation();
-  return categories.flatMap((category) =>
-    category.links
-      .filter((link) => link.featured)
-      .map((link) => ({ ...link, tags: link.tags ?? [] }))
-  );
-}
-

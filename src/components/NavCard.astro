@@ -1,5 +1,4 @@
 ---
-import TagList from "./TagList.astro";
 import { resolveAssetPath } from "../lib/assets";
 import type { NavItem } from "../lib/navigation";
 
@@ -13,24 +12,18 @@ const iconSrc = resolveAssetPath(item.icon);
 
 <article class="nav-card">
   <div class="nav-card-top">
-    <div class="nav-card-title">
-      {
-        iconSrc && (
-          <span class="nav-card-icon">
-            <img class="nav-card-icon-image" src={iconSrc} alt="" loading="lazy" decoding="async" />
-          </span>
-        )
-      }
-      <div>
-        <h3>
-          <a href={item.url} target="_blank" rel="noreferrer">
-            {item.title}
-          </a>
-        </h3>
-        {item.featured && <span class="pill">精选</span>}
-      </div>
+    {iconSrc && (
+      <span class="nav-card-icon">
+        <img class="nav-card-icon-image" src={iconSrc} alt="" loading="lazy" decoding="async" />
+      </span>
+    )}
+    <div class="nav-card-copy">
+      <h3>
+        <a href={item.url} target="_blank" rel="noreferrer">
+          {item.title}
+        </a>
+      </h3>
+      <p>{item.description}</p>
     </div>
   </div>
-  <p>{item.description}</p>
-  <TagList tags={item.tags ?? []} />
 </article>

@@ -17,9 +17,9 @@ export const siteConfig: SiteConfig = {
   siteName: "Willbon Atlas",
   siteDescription: "Willbon 的技术博客与导航图谱，收纳开发灵感、实践记录与常用资源。",
   author: "willbon-dev",
-  domain: "",
+  domain: "atlas.willbon.top",
   repoUrl: "git@github.com:willbon-dev/Atlas.git",
-  basePath: "/Atlas",
+  basePath: "/",
   socialLinks: [
     { label: "GitHub", url: "https://github.com/willbon-dev" },
     { label: "邮箱", url: "mailto:willbon.dev@gmail.com" }
