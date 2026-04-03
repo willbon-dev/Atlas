@@ -9,7 +9,7 @@ categories:
           - search
           - netdisk
         featured: true
-        icon: https://panhunt.com/favicon.ico
+        icon: assets/nav/icons/panhunt-com.png
       - title: PanHunt 搜索
         url: https://panhunt.com/
         description: 基于 PanSou 的搜索入口，适合直接按关键词检索资源。
@@ -17,7 +17,7 @@ categories:
           - search
           - pansou
         featured: false
-        icon: https://panhunt.com/favicon.ico
+        icon: assets/nav/icons/panhunt-com.png
       - title: PanSou 项目
         url: https://github.com/fish2018/pansou
         description: 网盘搜索项目源码，适合查看实现思路或自行部署。
@@ -25,7 +25,7 @@ categories:
           - github
           - search
         featured: false
-        icon: https://github.githubassets.com/favicons/favicon.svg
+        icon: assets/nav/icons/github-com.svg
       - title: Z-Library 访问指南
         url: https://www.reddit.com/r/zlibrary/wiki/index_zh/access_zh/
         description: Z-Library 中文访问说明，适合先确认当前可用入口。
@@ -33,7 +33,7 @@ categories:
           - books
           - guide
         featured: false
-        icon: https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png
+        icon: assets/nav/icons/www-reddit-com.png
       - title: Z-Access
         url: https://go-to-library.sk/
         description: Z-Library 访问入口页，适合快速跳转到可用镜像。
@@ -41,7 +41,6 @@ categories:
           - books
           - access
         featured: true
-        icon: https://go-to-library.sk/favicon.ico
   - title: AI 与大模型
     description: 关注模型原理、AI 编程与工具实践。
     links:
@@ -52,7 +51,6 @@ categories:
           - llm
           - tutorial
         featured: true
-        icon: https://datawhalechina.github.io/happy-llm/favicon.ico
       - title: Everything Claude Code
         url: https://github.com/affaan-m/everything-claude-code
         description: Claude Code 相关资料与经验汇总，适合查找工作流参考。
@@ -60,7 +58,7 @@ categories:
           - ai-coding
           - github
         featured: false
-        icon: https://github.githubassets.com/favicons/favicon.svg
+        icon: assets/nav/icons/github-com.svg
   - title: 前端与设计
     description: 偏前端实战、工具上手和界面设计的学习资料。
     links:
@@ -72,7 +70,7 @@ categories:
           - vue
           - typescript
         featured: true
-        icon: https://www.bilibili.com/favicon.ico
+        icon: assets/nav/icons/www-bilibili-com.ico
       - title: Figma 新手教程 2025
         url: https://www.bilibili.com/video/BV1QzADeFEcF/
         description: 面向新手的 Figma 基础操作与 UI 设计流程教程。
@@ -81,7 +79,7 @@ categories:
           - ui
           - beginner
         featured: false
-        icon: https://www.bilibili.com/favicon.ico
+        icon: assets/nav/icons/www-bilibili-com.ico
       - title: Figma 零基础入门 2026
         url: https://www.bilibili.com/video/BV1LDUWBjEPD
         description: 更完整的零基础 Figma 教程，适合做长期系统学习。
@@ -90,7 +88,7 @@ categories:
           - design
           - course
         featured: false
-        icon: https://www.bilibili.com/favicon.ico
+        icon: assets/nav/icons/www-bilibili-com.ico
       - title: Fontshare
         url: https://www.fontshare.com/
         description: 免费商用字体资源，适合尝试更有气质的排版。
@@ -98,7 +96,7 @@ categories:
           - typography
           - branding
         featured: false
-        icon: assets/nav/fontshare-mark.svg
+        icon: assets/nav/icons/www-fontshare-com.png
   - title: 写作与文档
     description: 适合整理写作规范、版本记录和内容维护习惯的参考。
     links:
@@ -109,4 +107,4 @@ categories:
           - documentation
           - changelog
         featured: true
-        icon: https://keepachangelog.com/apple-touch-icon.png
+        icon: assets/nav/icons/keepachangelog-com.ico

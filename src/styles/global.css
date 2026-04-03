@@ -315,16 +315,32 @@ main { padding-bottom: 5rem; }
   gap: 1rem;
 }
 .nav-card-icon {
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 0.95rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0.45rem;
+  border-radius: 1rem;
   display: grid;
   place-items: center;
-  background: var(--card-bg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 241, 234, 0.88));
   border: 1px solid var(--line);
   overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
-.nav-card-icon img { width: 70%; height: 70%; object-fit: contain; }
+.nav-card-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+:root[data-theme="dark"] .nav-card-icon {
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(226, 232, 240, 0.92));
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 10px 26px rgba(0, 0, 0, 0.18);
+}
 .pill { display: inline-flex; margin-top: 0.25rem; }
 .category-stack { display: grid; gap: 1.5rem; }
 .category-panel-rich {

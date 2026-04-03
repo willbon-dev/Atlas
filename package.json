@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "validate:content": "node scripts/validate-content.mjs"
+    "validate:content": "node scripts/validate-content.mjs",
+    "cache:nav-icons": "node scripts/cache-nav-icons.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
