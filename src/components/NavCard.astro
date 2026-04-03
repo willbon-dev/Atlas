@@ -1,4 +1,4 @@
----
+﻿---
 import TagList from "./TagList.astro";
 import { resolveAssetPath } from "../lib/assets";
 import type { NavItem } from "../lib/navigation";
@@ -30,6 +30,9 @@ const iconSrc = resolveAssetPath(item.icon);
         {item.featured && <span class="pill">Featured</span>}
       </div>
     </div>
+    <a class="nav-card-visit" href={item.url} target="_blank" rel="noreferrer" aria-label={`Visit ${item.title}`}>
+      Open
+    </a>
   </div>
   <p>{item.description}</p>
   <TagList tags={item.tags ?? []} />
