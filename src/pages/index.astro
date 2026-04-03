@@ -19,11 +19,11 @@ const basePath = siteConfig.basePath;
 
   <section class="shell section-stack">
     <SectionTitle
-      eyebrow="Recent Writing"
-      title="Latest blog posts"
+      eyebrow="近期写作"
+      title="最新文章"
       description="持续记录技术实践、项目设计与内容工作流。"
       href={`${basePath}/blog`}
-      hrefLabel="View all posts"
+      hrefLabel="查看全部文章"
     />
     <div class="post-grid-list">
       {posts.slice(0, 3).map((post) => (
@@ -41,15 +41,14 @@ const basePath = siteConfig.basePath;
 
   <section class="shell section-stack">
     <SectionTitle
-      eyebrow="Curated Resources"
-      title="Featured navigation"
+      eyebrow="精选资源"
+      title="导航推荐"
       description="把我真正常用、愿意反复推荐的资源整理成轻量导航。"
       href={`${basePath}/nav`}
-      hrefLabel="Open navigation"
+      hrefLabel="进入导航页"
     />
     <div class="nav-grid">
       {featuredLinks.map((item) => <NavCard item={item} />)}
     </div>
   </section>
 </BaseLayout>
-

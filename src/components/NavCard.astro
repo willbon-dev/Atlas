@@ -27,12 +27,9 @@ const iconSrc = resolveAssetPath(item.icon);
             {item.title}
           </a>
         </h3>
-        {item.featured && <span class="pill">Featured</span>}
+        {item.featured && <span class="pill">精选</span>}
       </div>
     </div>
-    <a class="nav-card-visit" href={item.url} target="_blank" rel="noreferrer" aria-label={`Visit ${item.title}`}>
-      Open
-    </a>
   </div>
   <p>{item.description}</p>
   <TagList tags={item.tags ?? []} />

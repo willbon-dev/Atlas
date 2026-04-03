@@ -11,34 +11,34 @@ const featuredCount = categories.reduce(
 const totalLinks = categories.reduce((total, category) => total + category.links.length, 0);
 ---
 
-<BaseLayout title="Navigation" description="Willbon Atlas 的精选导航。">
+<BaseLayout title="导航" description="Willbon Atlas 的精选导航。">
   <section class="shell nav-hero">
     <div class="nav-hero-copy">
-      <p class="eyebrow">Navigation</p>
-      <h1>A curated atlas of links</h1>
+      <p class="eyebrow">导航</p>
+      <h1>精选资源图谱</h1>
       <p class="lede">
-        这里收纳我会反复回访的资源入口，覆盖资料搜索、AI 学习、前端设计和文档写作。导航支持远程或本地 icon，
+        这里收纳我会反复回访的资源入口，覆盖资料搜索、AI 学习、前端设计和文档写作。导航支持远程或本地图标，
         后续扩展时只需要维护一份结构化配置。
       </p>
     </div>
     <div class="nav-hero-stats">
       <article class="nav-stat-card">
         <strong>{totalLinks}</strong>
-        <span>Curated Links</span>
+        <span>收录链接</span>
       </article>
       <article class="nav-stat-card">
         <strong>{categories.length}</strong>
-        <span>Categories</span>
+        <span>分类数量</span>
       </article>
       <article class="nav-stat-card">
         <strong>{featuredCount}</strong>
-        <span>Featured Picks</span>
+        <span>精选推荐</span>
       </article>
     </div>
   </section>
 
   <section class="shell listing-page">
-    <nav class="nav-category-index" aria-label="Navigation categories">
+    <nav class="nav-category-index" aria-label="导航分类">
       {
         categories.map((category) => (
           <a href={`#${category.title}`} class="nav-category-chip">

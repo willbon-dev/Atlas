@@ -52,14 +52,14 @@ const postBase = `${siteConfig.basePath}/blog`;
       <TableOfContents headings={headings} />
     </div>
 
-    <nav class="post-pagination" aria-label="Post navigation">
+    <nav class="post-pagination" aria-label="文章导航">
       {nextPost ? <a href={`${postBase}/${getPostSlug(nextPost.id)}/`}>← {nextPost.data.title}</a> : <span />}
       {prevPost ? <a href={`${postBase}/${getPostSlug(prevPost.id)}/`}>{prevPost.data.title} →</a> : <span />}
     </nav>
   </article>
 
   <script>
-    const blocks = Array.from(document.querySelectorAll(".expressive-content pre code.language-mermaid"));
+    const blocks = Array.from(document.querySelectorAll(".expressive-content pre[data-language='mermaid']"));
 
     async function renderMermaid() {
       if (blocks.length === 0) {
@@ -67,19 +67,21 @@ const postBase = `${siteConfig.basePath}/blog`;
       }
 
       const { default: mermaid } = await import("mermaid");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       mermaid.initialize({
         startOnLoad: false,
-        theme: "neutral",
+        theme: prefersDark ? "dark" : "neutral",
         securityLevel: "loose"
       });
 
       const nodes = [];
-      for (const code of blocks) {
-        const pre = code.parentElement;
-        if (!pre || !pre.parentElement) continue;
+      for (const pre of blocks) {
+        const code = pre.querySelector("code");
+        if (!code || !pre.parentElement) continue;
+
         const wrapper = document.createElement("div");
         wrapper.className = "mermaid";
-        wrapper.textContent = code.textContent ?? "";
+        wrapper.textContent = code.textContent?.trimEnd() ?? "";
         pre.replaceWith(wrapper);
         nodes.push(wrapper);
       }
@@ -92,4 +94,3 @@ const postBase = `${siteConfig.basePath}/blog`;
     renderMermaid();
   </script>
 </BaseLayout>
-

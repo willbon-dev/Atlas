@@ -3,9 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site";
 ---
 
-<BaseLayout title="About" description={`关于 ${siteConfig.siteName}。`}>
+<BaseLayout title="关于" description={`关于 ${siteConfig.siteName}。`}>
   <section class="shell about-page">
-    <p class="eyebrow">About</p>
+    <p class="eyebrow">关于</p>
     <h1>{siteConfig.siteName}</h1>
     <p class="lede">
       这是一个围绕开发实践、知识沉淀和高频资源整理建立的个人站点。博客与导航共享同一套视觉与维护体系，便于长期迭代。
@@ -13,15 +13,15 @@ import { siteConfig } from "../config/site";
 
     <div class="about-grid">
       <article class="info-card">
-        <h2>Brand</h2>
+        <h2>品牌配置</h2>
         <p>站点名称、描述、作者、域名和仓库地址都集中放在站点配置中，后续改名只需要改一处。</p>
       </article>
       <article class="info-card">
-        <h2>Content</h2>
+        <h2>内容维护</h2>
         <p>博客优先采用 Markdown 写作，复杂交互内容保留 MDX 扩展口；导航采用结构化 YAML 配置。</p>
       </article>
       <article class="info-card">
-        <h2>Publishing</h2>
+        <h2>发布方式</h2>
         <p>默认发布到 GitHub Pages，兼容后续绑定自定义域名的路径与品牌升级。</p>
       </article>
     </div>

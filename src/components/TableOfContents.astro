@@ -16,7 +16,7 @@ const filtered = headings.filter((heading) => heading.depth >= 2 && heading.dept
 {
   filtered.length > 0 && (
     <aside class="toc">
-      <p class="toc-title">On this page</p>
+      <p class="toc-title">本页目录</p>
       <ul>
         {filtered.map((heading) => <li class={`depth-${heading.depth}`}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
       </ul>

@@ -11,21 +11,21 @@ const { latestTitle, latestHref } = Astro.props;
 
 <section class="hero shell">
   <div class="hero-copy">
-    <p class="eyebrow">Willbon's Editorial Playground</p>
+    <p class="eyebrow">Willbon 的内容图谱</p>
     <h1>{siteConfig.siteName}</h1>
     <p class="hero-summary">{siteConfig.siteDescription}</p>
     <div class="hero-actions">
       <a class="button button-primary" href={`${siteConfig.basePath}/blog`}>
-        Explore Blog
+        浏览博客
       </a>
       <a class="button button-secondary" href={`${siteConfig.basePath}/nav`}>
-        Browse Navigation
+        查看导航
       </a>
     </div>
     {
       latestTitle && latestHref && (
         <p class="hero-latest">
-          Latest note:
+          最新文章：
           <a href={latestHref}>{latestTitle}</a>
         </p>
       )
@@ -33,12 +33,12 @@ const { latestTitle, latestHref } = Astro.props;
   </div>
   <div class="hero-panel">
     <div class="hero-panel-card">
-      <p>Content Stack</p>
+      <p>内容能力</p>
       <ul>
-        <li>Markdown / MDX blogging</li>
-        <li>KaTeX math rendering</li>
-        <li>Mermaid diagrams and mindmaps</li>
-        <li>Structured YAML navigation</li>
+        <li>Markdown / MDX 写作</li>
+        <li>KaTeX 数学公式</li>
+        <li>Mermaid 图表与思维导图</li>
+        <li>结构化 YAML 导航配置</li>
       </ul>
     </div>
   </div>
