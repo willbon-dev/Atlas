@@ -11,24 +11,7 @@ const { latestTitle, latestHref } = Astro.props;
 
 <section class="hero shell">
   <div class="hero-copy">
-    <p class="eyebrow">Willbon 的内容图谱</p>
     <h1>{siteConfig.siteName}</h1>
     <p class="hero-summary">{siteConfig.siteDescription}</p>
-    <div class="hero-actions">
-      <a class="button button-primary" href={`${siteConfig.basePath}blog`}>
-        浏览博客
-      </a>
-      <a class="button button-secondary" href={`${siteConfig.basePath}nav`}>
-        查看导航
-      </a>
-    </div>
-    {
-      latestTitle && latestHref && (
-        <p class="hero-latest">
-          最新文章：
-          <a href={latestHref}>{latestTitle}</a>
-        </p>
-      )
-    }
   </div>
 </section>

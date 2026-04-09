@@ -2,6 +2,7 @@ import { mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
+import sharp from "sharp";
 
 const navigationPath = fileURLToPath(new URL("../src/data/navigation.yml", import.meta.url));
 const iconDir = fileURLToPath(new URL("../public/assets/nav/icons", import.meta.url));
@@ -139,7 +140,7 @@ async function resolveLocalIcon(linkUrl) {
       const ext = inferExtension(candidateUrl, contentType);
       const fileName = `${slugifyHost(url.hostname)}${ext}`;
       const filePath = path.join(iconDir, fileName);
-      await writeFile(filePath, buffer);
+      await processAndSaveIcon(buffer, filePath, ext);
       const relativePath = `assets/nav/icons/${fileName}`;
       byHost.set(cacheKey, relativePath);
       return relativePath;
@@ -152,20 +153,57 @@ async function resolveLocalIcon(linkUrl) {
   return undefined;
 }
 
+async function processAndSaveIcon(buffer, filePath, ext) {
+  if (ext === ".svg") {
+    const svgText = buffer.toString("utf-8");
+    if (svgText.includes("background:none") || svgText.includes("background: none") || svgText.includes('style="background:none"')) {
+      const fixedSvg = svgText
+        .replace(/background:none\s*;/gi, "background:#ffffff;")
+        .replace(/background:\s*none\s*;/gi, "background:#ffffff;")
+        .replace(/style="background:none"/gi, 'style="background:#ffffff"');
+      await writeFile(filePath, fixedSvg, "utf-8");
+    } else {
+      await writeFile(filePath, buffer);
+    }
+    return;
+  }
+
+  if (ext === ".png" || ext === ".ico") {
+    const image = sharp(buffer);
+    const meta = await image.metadata();
+    if (meta.hasAlpha) {
+      await image
+        .ensureAlpha()
+        .resize(64, 64, { fit: "inside" })
+        .composite([{ input: { create: { width: 64, height: 64, channels: 4, background: { r: 255, g: 255, b: 255, alpha: 1 } } }, blend: "dest-over" }])
+        .png()
+        .toFile(filePath);
+    } else {
+      await image.resize(64, 64, { fit: "inside" }).toFile(filePath);
+    }
+    return;
+  }
+
+  await writeFile(filePath, buffer);
+}
+
 for (const category of parsed.categories) {
   for (const link of category.links ?? []) {
     try {
-      link.icon = await resolveLocalIcon(link.url);
+      link["icon-local"] = await resolveLocalIcon(link.url);
     } catch {
-      link.icon = undefined;
+      link["icon-local"] = undefined;
     }
   }
 }
 
 for (const category of parsed.categories) {
   for (const link of category.links ?? []) {
-    if (!link.icon) {
-      delete link.icon;
+    if (!link["icon-local"]) {
+      delete link["icon-local"];
+    }
+    if (!link["icon-remote"]) {
+      delete link["icon-remote"];
     }
   }
 }

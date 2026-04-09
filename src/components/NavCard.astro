@@ -7,17 +7,15 @@ type Props = {
 };
 
 const { item } = Astro.props;
-const iconSrc = resolveAssetPath(item.icon);
+const iconSrc = resolveAssetPath(item["icon-local"] ?? item["icon-remote"]);
 ---
 
 <article class="nav-card">
   <div class="nav-card-header">
-    {iconSrc ? (
+    {iconSrc && (
       <span class="nav-card-icon">
         <img class="nav-card-icon-image" src={iconSrc} alt="" loading="lazy" decoding="async" />
       </span>
-    ) : (
-      <span class="nav-card-icon nav-card-icon-placeholder"></span>
     )}
     <h3 class="nav-card-title">
       <a href={item.url} target="_blank" rel="noreferrer">

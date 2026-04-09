@@ -6,7 +6,8 @@ export type NavItem = {
   title: string;
   url: string;
   description: string;
-  icon?: string;
+  "icon-local"?: string;
+  "icon-remote"?: string;
 };
 
 export type NavCategory = {

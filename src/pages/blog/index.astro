@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
-import SectionTitle from "../../components/SectionTitle.astro";
 import { siteConfig } from "../../config/site";
 import { collectTags, getPostSlug, getPublishedPosts } from "../../lib/posts";
 
@@ -12,11 +11,10 @@ const basePath = siteConfig.basePath;
 
 <BaseLayout title="博客" description="Willbon Atlas 的博客文章列表。">
   <section class="shell listing-page">
-    <SectionTitle
-      eyebrow="博客"
-      title="写作与构建记录"
-      description="支持 Markdown、公式、Mermaid 图表与思维导图的长期写作空间。"
-    />
+    <div class="category-heading">
+      <h2>写作与构建记录</h2>
+      <p>支持 Markdown、公式、Mermaid 图表与思维导图的长期写作空间。</p>
+    </div>
 
     <div class="filter-bar" data-filter-root>
       <button class="filter-chip active" type="button" data-tag="all">全部</button>
