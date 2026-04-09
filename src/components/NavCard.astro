@@ -11,19 +11,19 @@ const iconSrc = resolveAssetPath(item.icon);
 ---
 
 <article class="nav-card">
-  <div class="nav-card-top">
-    {iconSrc && (
+  <div class="nav-card-header">
+    {iconSrc ? (
       <span class="nav-card-icon">
         <img class="nav-card-icon-image" src={iconSrc} alt="" loading="lazy" decoding="async" />
       </span>
+    ) : (
+      <span class="nav-card-icon nav-card-icon-placeholder"></span>
     )}
-    <div class="nav-card-copy">
-      <h3>
-        <a href={item.url} target="_blank" rel="noreferrer">
-          {item.title}
-        </a>
-      </h3>
-      <p>{item.description}</p>
-    </div>
+    <h3 class="nav-card-title">
+      <a href={item.url} target="_blank" rel="noreferrer">
+        {item.title}
+      </a>
+    </h3>
   </div>
+  <p class="nav-card-desc">{item.description}</p>
 </article>
